@@ -1,0 +1,49 @@
+﻿@model DataPassing.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+
+    string name =(string)ViewData["Name"];
+    string Company = ViewBag.COmpany;
+}
+
+<a  asp-action="Data" asp-controller="Account" asp-route-ID="1" asp-route-name="Ajay" asp-route-address="Hyd">Send Data</a>
+
+<h1>Login</h1>
+
+<p>
+    Name: @ViewData["Name"], @ViewBag.Name;
+    Company: @ViewBag.Company,  @ViewData["Company"];
+
+
+</p>
+<h4>LoginModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

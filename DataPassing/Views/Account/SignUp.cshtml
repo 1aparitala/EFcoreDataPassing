@@ -1,0 +1,72 @@
+﻿@model DataPassing.Models.UserModel
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<h1>SignUp</h1>
+
+<h4>UserModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SignUp">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Confirmpassword" class="control-label"></label>
+                <input asp-for="Confirmpassword" class="form-control" />
+                <span asp-validation-for="Confirmpassword" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input asp-for="Terms" class="form-check-input" /> @Html.DisplayNameFor(model => model.Terms)
+                </label>
+                <span asp-validation-for="Terms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign Up" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+<script>
+
+    jQuery.validator.unobtrusive.adapters.add("Validatecheckbox", function (options) {
+        if (options.element.tagName.toUpperCase() == "INPUT" && options.element.type.toUpperCase() == "CHECKBOX") {
+            options.rules["required"] = true;
+            if (options.message) {
+                options.message["required"] = options.message;
+            }
+        }
+
+    })
+    //adapters.add("required", function (options) {
+    //    // jQuery Validate equates "required" with "mandatory" for checkbox elements
+    //    if (options.element.tagName.toUpperCase() !== "INPUT" || options.element.type.toUpperCase() !== "CHECKBOX") {
+    //        setValidationValues(options, "required", true);
+    //    }
+    //});
+</script>
+}
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
